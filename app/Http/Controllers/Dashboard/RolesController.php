@@ -7,18 +7,23 @@ use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class RoleController extends Controller
+
+class RolesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+/*    public function __construct()
+    {
+        $this->middleware('permission:read_roles')->only(['index']);
+        $this->middleware('permission:create_roles')->only(['create','store']);
+        $this->middleware('permission:update_roles')->only(['edit','update']);
+        $this->middleware('permission:delete_roles')->only(['destroy']);
+    }*/
+
+
     public function index()
     {
-
         $roles = Role::whenSearch(request()->search)->paginate(5);
-        /*$roles = Role::whereRoleNot(['super_admin'])
+       /* $roles = Role::whereRoleNot(['super_admin'])
             ->whenSearch(request()->search)
             ->with('permissions')
             ->withCount('users')
@@ -96,7 +101,7 @@ class RoleController extends Controller
         $request->validate([
             'name' => [
                 'required',
-                Rule::unique('roles', 'name')->ignore($role->id)
+                Rule::unique('roles','name') ->ignore($role->id)
             ],
             'permissions' => 'required|array|min:1',
         ]);
@@ -125,5 +130,23 @@ class RoleController extends Controller
         session()->flash('success', 'Data deleted successfully');
         return redirect()->route('dashboard.roles.index');
     }
+
+
+    /**
+     * Responds with a welcome message with instructions
+     *
+     * @return \Illuminate\Http\Response
+     */
+    /*    public function changeStatus(Request $request)
+        {
+
+            $Role = Role::findOrFail($request->Role_id);
+            $Role->status = $request->status;
+            $Role->save();
+
+            // return response()->json(['message' => 'User status updated successfully.']);
+            return response()->json(['success' => 'Status change successfully.']);
+            // session()->flash('success', 'Status change successfully');
+        }*/
 
 }

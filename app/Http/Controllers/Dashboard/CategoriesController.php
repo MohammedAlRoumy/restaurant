@@ -17,7 +17,7 @@ class CategoriesController extends Controller
 //        //
         $categories = Category::whenSearch(request()->search)->paginate();
         return view('dashboard.categories.index',compact('categories'));
-        $name = $request->get('name');
+       // $name = $request->get('name');
         /*if ($request->ajax()) {
             $data = Category::where('name', 'LIKE', '%' . $name . '%')
                 ->get();

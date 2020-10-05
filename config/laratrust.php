@@ -46,7 +46,7 @@ return [
         | NOTE: Currently the database check does not use cache.
         |
         */
-        'enabled' => env('LARATRUST_ENABLE_CACHE', true),
+        'enabled' => true,
 
         /*
         |--------------------------------------------------------------------------
@@ -73,7 +73,7 @@ return [
     |
     */
     'user_models' => [
-        'users' => \App\User::class,
+        'users' => 'App\User',
     ],
 
     /*
@@ -88,14 +88,14 @@ return [
     */
     'models' => [
 
-        'role' => \App\Role::class,
+        'role' => 'App\Role',
 
-        'permission' => \App\Permission::class,
+        'permission' => 'App\Permission',
 
         /**
          * Will be used only if the teams functionality is enabled.
          */
-        'team' => \App\Team::class,
+        'team' => 'App\Team',
     ],
 
     /*
@@ -300,25 +300,5 @@ return [
         |
         */
         'assign_permissions_to_user' => true,
-
-        /*
-        |--------------------------------------------------------------------------
-        | Add restriction to roles in the panel
-        |--------------------------------------------------------------------------
-        |
-        | Configure which roles can not be editable, deletable and removable.
-        | To add a role to the restriction, use name of the role here.
-        |
-        */
-        'roles_restrictions' => [
-            // The user won't be able to remove roles already assigend to users.
-            'not_removable' => [],
-
-            // The user won't be able to edit the role and the permissions assigned.
-            'not_editable' => [],
-
-            // The user won't be able to delete the role.
-            'not_deletable' => [],
-        ],
     ]
 ];

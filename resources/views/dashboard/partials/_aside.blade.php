@@ -32,17 +32,43 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('dashboard.users.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.users.index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>الاعضاء</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('dashboard.roles.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.roles.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>الصلاحيات</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('dashboard.categories.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.categories.index' ? 'active' : '' }}">
+                    <a href="{{route('dashboard.categories.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.categories.index'? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>قوائم الطعام</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard.meals.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.meals.index'? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>الوجبات</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard.ourteams.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.ourteams.index'? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>فريق الطبخ</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{route('dashboard.aboutus.index')}}" class="nav-link {{ Route::currentRouteName() == 'dashboard.aboutus.index'? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>من نحن</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon far fa-circle text-info"></i>

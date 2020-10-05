@@ -6,6 +6,10 @@
     <title>AdminLTE 3 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{--csrf_token--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
@@ -30,6 +34,11 @@
 
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.css')}}">
+
+    <!-- select2 -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
     <!-- Toastr -->
     <link rel="stylesheet" href="{{asset('admin/plugins/toastr/toastr.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
@@ -96,6 +105,14 @@
 <script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+<!-- select2 -->
+{{--
+<script src="{{asset('admin/plugins/select-2/select2.min.js')}}"></script>
+--}}
+<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+
+
 <!-- Toastr -->
 <script src="{{asset('admin/plugins/toastr/toastr.min.js')}}"></script>
 <!-- overlayScrollbars -->
@@ -108,5 +125,14 @@
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
 
 @yield('js')
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        })
+    });
+</script>
 </body>
 </html>
