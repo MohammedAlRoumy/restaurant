@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +21,7 @@ Route::prefix('dashboard')
 //    ->middleware(['auth', 'role:super_admin|admin'])
     ->group(function () {
 
-        Route::get('', function () {
-            return view('dashboard.home');
-        })->name('index');
+        Route::get('', 'DashboardController@index')->name('index');
 
         Route::resource('users','UsersController')->except('show');
 
@@ -34,10 +33,10 @@ Route::prefix('dashboard')
 
         Route::resource('meals','MealsController')->except('show');
 
+        Route::resource('tables', 'TablesController')->except('show');
 
         Route::resource('aboutus','AboutUsController')->only(['index','store']);
 
-
-
+        Route::resource('contactus', 'ContactUsController')->only(['index','show','destroy']);
     });
 

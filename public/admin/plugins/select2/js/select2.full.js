@@ -1933,7 +1933,7 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');   
+    var removeAll = this.options.get('translations').get('removeAllItems');
 
     var $remove = $(
       '<span class="select2-selection__clear" title="' + removeAll() +'">' +
@@ -6639,7 +6639,7 @@ S2.define('select2/selection/stopPropagation',[
         // properties with normalized deltas.
         event.deltaMode = 0;
 
-        // Add event and delta to the front of the arguments
+        // Add event and delta to the frontend of the arguments
         args.unshift(event, delta, deltaX, deltaY);
 
         // Clearout lowestDelta after sometime to better

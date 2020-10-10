@@ -11619,7 +11619,7 @@ jQuery.event = {
 				}
 			}
 
-			// Add to the element's handler list, delegates in front
+			// Add to the element's handler list, delegates in frontend
 			if ( selector ) {
 				handlers.splice( handlers.delegateCount++, 0, handleObj );
 			} else {
@@ -36130,7 +36130,7 @@ function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
   var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
 
   // Split the offset string to obtain a list of values and operands
-  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  // The regex addresses values with the plus or minus sign in frontend (+10, -20, etc)
   var fragments = offset.split(/(\+|\-)/).map(function (frag) {
     return frag.trim();
   });

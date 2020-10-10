@@ -5220,7 +5220,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 				menu.attr( "aria-labelledby", item.attr( "id" ) );
 			} );
 
-		this._addClass( newSubmenus, "ui-menu", "ui-widget ui-widget-content ui-front" );
+		this._addClass( newSubmenus, "ui-menu", "ui-widget ui-widget-content ui-frontend" );
 
 		menus = submenus.add( this.element );
 		items = menus.find( this.options.items );
@@ -5781,7 +5781,7 @@ $.widget( "ui.autocomplete", {
 			.hide()
 			.menu( "instance" );
 
-		this._addClass( this.menu.element, "ui-autocomplete", "ui-front" );
+		this._addClass( this.menu.element, "ui-autocomplete", "ui-frontend" );
 		this._on( this.menu.element, {
 			mousedown: function( event ) {
 
@@ -5933,7 +5933,7 @@ $.widget( "ui.autocomplete", {
 		}
 
 		if ( !element || !element[ 0 ] ) {
-			element = this.element.closest( ".ui-front, dialog" );
+			element = this.element.closest( ".ui-frontend, dialog" );
 		}
 
 		if ( !element.length ) {
@@ -12162,7 +12162,7 @@ $.widget( "ui.dialog", {
 
 	_moveToTop: function( event, silent ) {
 		var moved = false,
-			zIndices = this.uiDialog.siblings( ".ui-front:visible" ).map( function() {
+			zIndices = this.uiDialog.siblings( ".ui-frontend:visible" ).map( function() {
 				return +$( this ).css( "z-index" );
 			} ).get(),
 			zIndexMax = Math.max.apply( null, zIndices );
@@ -12272,7 +12272,7 @@ $.widget( "ui.dialog", {
 			} )
 			.appendTo( this._appendTo() );
 
-		this._addClass( this.uiDialog, "ui-dialog", "ui-widget ui-widget-content ui-front" );
+		this._addClass( this.uiDialog, "ui-dialog", "ui-widget ui-widget-content ui-frontend" );
 		this._on( this.uiDialog, {
 			keydown: function( event ) {
 				if ( this.options.closeOnEscape && !event.isDefaultPrevented() && event.keyCode &&
@@ -12762,7 +12762,7 @@ $.widget( "ui.dialog", {
 		}
 
 		// TODO: Remove hack when datepicker implements
-		// the .ui-front logic (#8989)
+		// the .ui-frontend logic (#8989)
 		return !!$( event.target ).closest( ".ui-datepicker" ).length;
 	},
 
@@ -12800,7 +12800,7 @@ $.widget( "ui.dialog", {
 		this.overlay = $( "<div>" )
 			.appendTo( this._appendTo() );
 
-		this._addClass( this.overlay, null, "ui-widget-overlay ui-front" );
+		this._addClass( this.overlay, null, "ui-widget-overlay ui-frontend" );
 		this._on( this.overlay, {
 			mousedown: "_keepFocus"
 		} );
@@ -13930,7 +13930,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 		// Wrap menu
 		this.menuWrap = $( "<div>" ).append( this.menu );
-		this._addClass( this.menuWrap, "ui-selectmenu-menu", "ui-front" );
+		this._addClass( this.menuWrap, "ui-selectmenu-menu", "ui-frontend" );
 		this.menuWrap.appendTo( this._appendTo() );
 
 		// Initialize menu widget
@@ -14367,7 +14367,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		}
 
 		if ( !element || !element[ 0 ] ) {
-			element = this.element.closest( ".ui-front, dialog" );
+			element = this.element.closest( ".ui-frontend, dialog" );
 		}
 
 		if ( !element.length ) {
@@ -18640,7 +18640,7 @@ $.widget( "ui.tooltip", {
 	},
 
 	_appendTo: function( target ) {
-		var element = target.closest( ".ui-front, dialog" );
+		var element = target.closest( ".ui-frontend, dialog" );
 
 		if ( !element.length ) {
 			element = this.document[ 0 ].body;

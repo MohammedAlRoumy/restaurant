@@ -10,7 +10,7 @@ class Category extends Model
     protected $fillable=['name'];
 
     public function meals(){
-        return $this->hasMany(Model::class);
+        return $this->hasMany(Meal::class);
     }
 
     public function scopeWhenSearch($query, $search)

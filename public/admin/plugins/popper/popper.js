@@ -1630,7 +1630,7 @@ function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
   const useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
 
   // Split the offset string to obtain a list of values and operands
-  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  // The regex addresses values with the plus or minus sign in frontend (+10, -20, etc)
   const fragments = offset.split(/(\+|\-)/).map(frag => frag.trim());
 
   // Detect if the offset string contains a pair of values or a single one

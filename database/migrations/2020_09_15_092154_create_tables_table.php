@@ -15,9 +15,9 @@ class CreateTablesTable extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->integer('tableNumber');
-            $table->integer('chairNumbers');
-            $table->enum('status',[0,1]);
+            $table->integer('tableNumber')->unique();
+            $table->integer('chairs');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
