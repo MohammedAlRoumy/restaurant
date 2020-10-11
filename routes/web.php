@@ -23,4 +23,4 @@ Auth::routes(['register'=>false]);
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/', 'HomeController@contactus')->name('contactus');
-Route::post('/', ['as'=>'contactus.store','uses'=>'HomeController@contactusAdd']);
+Route::post('/', ['as'=>'store','uses'=>'HomeController@store']);

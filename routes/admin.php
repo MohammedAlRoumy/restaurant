@@ -38,5 +38,7 @@ Route::prefix('dashboard')
         Route::resource('aboutus','AboutUsController')->only(['index','store']);
 
         Route::resource('contactus', 'ContactUsController')->only(['index','show','destroy']);
+
+        Route::resource('reservations', 'ReservationsController')->only(['index','show','destroy']);
     });
 

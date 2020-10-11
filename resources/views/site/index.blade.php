@@ -120,30 +120,41 @@
             <hr>
         </div>
         <div class="col-md-12">
-            <form>
+            <form id="first_form" method="POST" action="{{route('store')}}">
+
+                @csrf()
+
                 <div class="form-row">
+                    <input type="hidden" name="which" value="first_form">
+
                     <div class="form-group col-6">
-                        <input type="date" class="form-control" id="inputDate" placeholder="Data gg/mm/aaaa">
+                        <input type="date" name="date" class="form-control" id="inputDate" placeholder="Data gg/mm/aaaa">
                     </div>
                     <div class="form-group col-6">
-                        <input type="text" class="form-control" id="inputName" placeholder="الاسم">
+                        <input type="text" name="name" class="form-control" id="inputName" placeholder="الاسم">
                     </div>
                     <div class="form-group col-6">
-                        <input type="time" class="form-control" id="inputTime" placeholder="Timetables">
+                        <input type="time" name="time" class="form-control" id="inputTime" placeholder="Timetables">
                     </div>
                     <div class="form-group col-6">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="البريد الالكتروني">
+                        <input type="email" name="email" class="form-control" id="inputEmail" placeholder="البريد الالكتروني">
+                    </div>
+
+                    <div class="form-group col-6">
+                            <select name="table" class="form-control" style="width: 100%">
+                                <option value="">رقم الطاولة</option>
+                                @foreach($tables as $table)
+                                    <option value="{{$table->id}}">{{$table->tableNumber}}</option>
+                                @endforeach
+                            </select>
                     </div>
                     <div class="form-group col-6">
-                        <input type="number" class="form-control" id="inputNumber" placeholder="عدد الحضور">
+                        <input type="tel" name="phone" class="form-control" id="inputCel" placeholder="الهاتف">
                     </div>
-                    <div class="form-group col-6">
-                        <input type="tel" class="form-control" id="inputCel" placeholder="الهاتف">
-                    </div>
-                    <div class="form-group col-12">
+                {{--    <div class="form-group col-12">
                             <textarea class="form-control" rows="4" id="inputComment"
                                       placeholder="طلبات مسبقة"></textarea>
-                    </div>
+                    </div>--}}
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
@@ -191,10 +202,11 @@
             <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة،</p>
         </div>
         <div class="col-md-12">
-            <form class="" method="POST" action="{{route('contactus.store')}}">
+            <form class="" id="second_form" method="POST" action="{{route('store')}}">
                 @csrf()
 {{--                @method('post')--}}
                 <div class="row">
+                    <input type="hidden" name="which" value="second_form">
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" name="title" id="title" class="form-control" placeholder="العنوان" required="required">

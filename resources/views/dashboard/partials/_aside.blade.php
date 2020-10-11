@@ -26,7 +26,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{route('dashboard.index')}}" class="nav-link {{ Str::is('dashboard.index.*',Route::currentRouteName()) ? 'active' : '' }}">
+                    <a href="{{route('dashboard.index')}}" class="nav-link {{ Str::is('dashboard.index',Route::currentRouteName()) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>الرئيسية</p>
                     </a>
@@ -41,6 +41,12 @@
                     <a href="{{route('dashboard.roles.index')}}" class="nav-link {{ Str::is('dashboard.roles.*',Route::currentRouteName()) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>الصلاحيات</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard.reservations.index')}}" class="nav-link {{ Str::is('dashboard.reservations.*',Route::currentRouteName()) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>الحجوزات</p>
                     </a>
                 </li>
                 <li class="nav-item">
