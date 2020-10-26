@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
+    <!-- sweetalert2 -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2/sweetalert2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+
     <!-- Toastr -->
     <link rel="stylesheet" href="{{asset('admin/plugins/toastr/toastr.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
@@ -112,6 +116,7 @@
 --}}
 <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
 
+<script src="{{asset('admin/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
 
 <!-- Toastr -->
 <script src="{{asset('admin/plugins/toastr/toastr.min.js')}}"></script>

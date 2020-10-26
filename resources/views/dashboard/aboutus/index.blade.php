@@ -40,7 +40,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">محتوى من نحن</label>
                         <div class="col-sm-10">
-                            <textarea name="aboutus" class="form-control"></textarea>
+                            <textarea name="aboutus" class="form-control">{{setting('aboutus')}}</textarea>
                         </div>
                     </div>
 
@@ -48,13 +48,14 @@
                         <label class="col-sm-2 control-label">صورة من نحن</label>
                         <div class="col-sm-10">
                             <input type="file" name="image" class="form-control">
+                            <img src="{{asset('upload/images').'/'.setting('image') }}" class="img-responsive p-2" alt="" width="20%">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">البريد الإلكتروني</label>
                         <div class="col-sm-10">
-                            <input type="email" name="email" min="0" class="form-control">
+                            <input type="email" name="email" min="0" class="form-control" value="{{setting('email')}}">
                         </div>
                     </div>
 
@@ -63,7 +64,7 @@
                         <div class="col-sm-10">
                             الصيغة: 7890-456-123
                             <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                   class="form-control">
+                                   class="form-control" value="{{setting('phone')}}">
                         </div>
                     </div>
 
@@ -71,39 +72,39 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">عنوان البناية</label>
                         <div class="col-sm-10">
-                            <input type="text" name="building" class="form-control">
+                            <input type="text" name="building" class="form-control" value="{{setting('building')}}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">اسم الشارع</label>
                         <div class="col-sm-10">
-                            <input type="text" name="street" class="form-control">
+                            <input type="text" name="street" class="form-control" value="{{setting('street')}}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">اسم المدينة</label>
                         <div class="col-sm-10">
-                            <input type="text" name="city" class="form-control">
+                            <input type="text" name="city" class="form-control" value="{{setting('city')}}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 control-label">مواعيد العمل: <p>السبت - الخميس</p> </label>
+                        <label class="col-sm-2 control-label">مواعيد العمل: <p>يومياً</p> </label>
                         <div class="col-sm-10 row">
                             <div class="col-sm-5">
                                 من الساعة
-                                <input type="time" name="fromtime1" class="form-control">
+                                <input type="time" name="fromtime1" class="form-control" value="{{setting('fromtime1')}}">
                             </div>
                             <div class="col-sm-5">
                                 إلى الساعة
-                                <input type="time" name="totime1"  class="form-control">
+                                <input type="time" name="totime1"  class="form-control" value="{{setting('totime1')}}">
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                   {{-- <div class="form-group row">
                         <label class="col-sm-2 control-label">مواعيد العمل: <p>الجمعة</p> </label>
                         <div class="col-sm-10 row">
                             <div class="col-sm-5">
@@ -115,7 +116,7 @@
                                 <input type="time" name="totime2"  class="form-control">
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                 </div>
                 <!-- /.card-body -->

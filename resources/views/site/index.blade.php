@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
 </head>
 <body>
+
 <!-- Header -->
 <header id="header">
 
@@ -67,7 +68,9 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-6 ">
-                <div class="about-img"><img src="{{asset('upload/images').'/'.setting('image') }}" class="img-responsive" alt="" width="100%"></div>
+                <div class="about-img">
+                    <img src="{{asset('upload/images').'/'.setting('image') }}" class="img-responsive" alt="" width="100%">
+                </div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="about-text">
@@ -111,6 +114,9 @@
     </div>
 </div>
 
+
+@include('sweetalert::alert')
+
 <!-- Reservation Section -->
 <div id="reservation">
     <!--    <div class="row">-->
@@ -133,8 +139,13 @@
                     <div class="form-group col-6">
                         <input type="text" name="name" class="form-control" id="inputName" placeholder="الاسم">
                     </div>
-                    <div class="form-group col-6">
-                        <input type="time" name="time" class="form-control" id="inputTime" placeholder="Timetables">
+                    <div class="form-group col-3">
+                        <span>الوقت من</span>
+                        <input type="time" name="timefrom" class="form-control" id="inputTime" placeholder="Timetables">
+                    </div>
+                    <div class="form-group col-3">
+                        <span>الوقت الي</span>
+                        <input type="time" name="timeto" class="form-control" id="inputTime" placeholder="Timetables">
                     </div>
                     <div class="form-group col-6">
                         <input type="email" name="email" class="form-control" id="inputEmail" placeholder="البريد الالكتروني">
@@ -245,23 +256,23 @@
                 <div class="col-md-4">
                     <h3>العنوان</h3>
                     <div class="contact-item">
-                        <p>بناية,</p>
-                        <p>شارع,</p>
-                        <p>مدينة,</p>
+                        <p>{{setting('building')}}</p>
+                        <p>{{setting('street')}}</p>
+                        <p>{{setting('city')}}</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h3>مواعيد العمل</h3>
                     <div class="contact-item">
-                        <p>السبت - الخميس: 11:00 صباحاً - 11:00 مساءً </p>
-                        <p>الجمعة: 2:00 مساءً - 11:00 مساءً</p>
+                        <p>يومياً: {{setting('fromtime1')}} صباحاً - {{setting('totime1')}} مساءً </p>
+                     {{--   <p>الجمعة: 2:00 مساءً - 11:00 مساءً</p>--}}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h3>للتواصل</h3>
                     <div class="contact-item">
-                        <p>هاتف:070591111111</p>
-                        <p>بريد إلكتروني: info@company.com</p>
+                        <p>هاتف:{{setting('phone')}}</p>
+                        <p>بريد إلكتروني: {{setting('email')}}</p>
                     </div>
                 </div>
             </div>

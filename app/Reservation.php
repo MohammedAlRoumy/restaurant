@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     //
-    protected $fillable=['name','email','phone','table','date','time'];
+    protected $fillable=['name','email','phone','table','date','timefrom','timeto'];
 
     public function scopeWhenSearch($query, $search)
     {

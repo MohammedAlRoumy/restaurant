@@ -32,7 +32,7 @@
             <span class="invalid-feedback" role="alert">
             </span>
             @enderror
-            <form class="form-horizontal" method="put" action="{{route('dashboard.categories.update',$category->id)}}">
+            <form class="form-horizontal" method="post" action="{{route('dashboard.categories.update',$category->id)}}">
                 @csrf
                 @method('put')
                 @include('dashboard.partials._errors')

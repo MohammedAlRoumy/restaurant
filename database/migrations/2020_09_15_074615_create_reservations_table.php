@@ -20,8 +20,9 @@ class CreateReservationsTable extends Migration
             $table->string('phone');
             $table->integer('table');
             $table->date('date');
-            $table->time('time');
-            $table->unique(['table','date','time']);
+            $table->time('timefrom');
+            $table->time('timeto');
+            $table->unique(['table','date','timefrom','timeto']);
             $table->timestamps();
         });
     }
