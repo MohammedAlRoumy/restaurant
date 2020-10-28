@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 class ContactUsController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('permission:read_users')->only(['index']);
+        $this->middleware('permission:delete_users')->only(['destroy']);
+    }
+
     public function index()
     {
         // $user= User::first();

@@ -36,7 +36,8 @@
                                                     <input type="search" name="search" autofocus class="form-control"
                                                            placeholder="بحث" value="{{request()->search}}">
                                                     <span class="input-group-append">
-                                                        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                                                        <button type="submit" class="btn btn-info"><i
+                                                                class="fa fa-search"></i></button>
                                                     </span>
                                                 </div>
                                             </div>
@@ -72,29 +73,32 @@
                                                     <td>{{$reservation->time}}</td>
 
                                                     <td>
-{{--                                                        @if(auth()->user()->hasPermission('update_contactus'))--}}
+                                                        @if(auth()->user()->hasPermission('read_reservations'))
                                                             <a href="{{route('dashboard.reservations.show',$reservation->id)}}"
                                                                class="btn btn-warning btn-sm"><i
                                                                     class="fa fa-eye"></i> عرض</a>
-{{--                                                        @else--}}
-{{--                                                            <a href="#" class="btn btn-warning btn-sm" disabled=""><i--}}
-{{--                                                                    class="fa fa-eye"></i> عرض</a>--}}
-{{--                                                        @endif--}}
+                                                        @else
+                                                            <a href="#" class="btn btn-warning btn-sm disabled"><i
+                                                                    class="fa fa-eye"></i> عرض</a>
+                                                        @endif
 
-{{--                                                        @if(auth()->user()->hasPermission('delete_contactus'))--}}
-                                                            <form action="{{route('dashboard.reservations.destroy',$reservation->id)}}"
-                                                                  method="post"
-                                                                  style="display: inline-block">
+                                                        @if(auth()->user()->hasPermission('delete_reservations'))
+                                                            <form
+                                                                action="{{route('dashboard.reservations.destroy',$reservation->id)}}"
+                                                                method="post"
+                                                                style="display: inline-block">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button type="submit" class="btn btn-danger btn-sm delete"><i
+                                                                <button type="submit"
+                                                                        class="btn btn-danger btn-sm delete">
+                                                                    <i
                                                                         class="fa fa-trash"></i> حذف
                                                                 </button>
                                                             </form>
-{{--                                                        @else--}}
-{{--                                                            <a href="#" class="btn btn-danger btn-sm " disabled=""><i--}}
-{{--                                                                    class="fa fa-trash"></i> حذف</a>--}}
-{{--                                                        @endif--}}
+                                                        @else
+                                                            <a href="#" class="btn btn-danger btn-sm disabled"><i
+                                                                    class="fa fa-trash"></i> حذف</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

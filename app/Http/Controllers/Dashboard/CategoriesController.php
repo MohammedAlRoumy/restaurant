@@ -12,28 +12,19 @@ use Yajra\DataTables\DataTables;
 class CategoriesController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('permission:read_users')->only(['index']);
+        $this->middleware('permission:create_users')->only(['create','store']);
+        $this->middleware('permission:update_users')->only(['edit','update']);
+        $this->middleware('permission:delete_users')->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
 //        //
         $categories = Category::whenSearch(request()->search)->paginate();
         return view('dashboard.categories.index',compact('categories'));
-       // $name = $request->get('name');
-        /*if ($request->ajax()) {
-            $data = Category::where('name', 'LIKE', '%' . $name . '%')
-                ->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                   // $btn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return view('dashboard.categories.parts.actions')->render();
-
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('dashboard.categories.index');*/
-
     }
 
 

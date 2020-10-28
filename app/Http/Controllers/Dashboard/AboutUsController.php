@@ -10,11 +10,7 @@ use Intervention\Image\Facades\Image;
 
 class AboutUsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('dashboard.aboutus.index');

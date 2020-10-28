@@ -36,15 +36,21 @@
                                                     <input type="search" name="search" autofocus class="form-control"
                                                            placeholder="بحث" value="{{request()->search}}">
                                                     <span class="input-group-append">
-                                                        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                                                        <button type="submit" class="btn btn-info"><i
+                                                                class="fa fa-search"></i></button>
                                                     </span>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
-                                                <a href="{{route('dashboard.meals.create')}}"
-                                                   class="btn btn-success btn-sm"><i
-                                                        class="fa fa-plus"></i> إضافة</a>
+                                                @if(auth()->user()->hasPermission('create_meals'))
+                                                    <a href="{{route('dashboard.meals.create')}}"
+                                                       class="btn btn-success btn-sm"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @else
+                                                    <a href="#" class="btn btn-success btn-sm disabled"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </form>
@@ -78,21 +84,33 @@
                                                     <td>{{$meal->category->name}}</td>
 
                                                     <td>
-                                                        <a href="{{route('dashboard.meals.edit',$meal->id)}}"
-                                                           class="btn btn-warning btn-sm"><i
-                                                                class="fa fa-edit"></i> تعديل</a>
+                                                        @if(auth()->user()->hasPermission('update_meals'))
+                                                            <a href="{{route('dashboard.meals.edit',$meal->id)}}"
+                                                               class="btn btn-warning btn-sm"><i
+                                                                    class="fa fa-edit"></i> تعديل</a>
+                                                        @else
+                                                            <a href="#"
+                                                               class="btn btn-warning btn-sm disabled"><i
+                                                                    class="fa fa-edit"></i> تعديل</a>
+                                                        @endif
 
-                                                        <form
-                                                            action="{{route('dashboard.meals.destroy',$meal->id)}}"
-                                                            method="post"
-                                                            style="display: inline-block">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit" class="btn btn-danger btn-sm delete">
-                                                                <i
-                                                                    class="fa fa-trash"></i> حذف
-                                                            </button>
-                                                        </form>
+                                                        @if(auth()->user()->hasPermission('delete_meals'))
+                                                            <form
+                                                                action="{{route('dashboard.meals.destroy',$meal->id)}}"
+                                                                method="post"
+                                                                style="display: inline-block">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button type="submit"
+                                                                        class="btn btn-danger btn-sm delete">
+                                                                    <i
+                                                                        class="fa fa-trash"></i> حذف
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <a href="#" class="btn btn-danger btn-sm disabled"><i
+                                                                    class="fa fa-trash"></i> حذف</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

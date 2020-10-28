@@ -11,18 +11,18 @@ use Illuminate\Validation\Rule;
 class RolesController extends Controller
 {
 
-/*    public function __construct()
+    public function __construct()
     {
         $this->middleware('permission:read_roles')->only(['index']);
         $this->middleware('permission:create_roles')->only(['create','store']);
         $this->middleware('permission:update_roles')->only(['edit','update']);
         $this->middleware('permission:delete_roles')->only(['destroy']);
-    }*/
+    }
 
 
     public function index()
     {
-        $roles = Role::whenSearch(request()->search)->paginate(5);
+        $roles = Role::whenSearch(request()->search)->paginate();
        /* $roles = Role::whereRoleNot(['super_admin'])
             ->whenSearch(request()->search)
             ->with('permissions')

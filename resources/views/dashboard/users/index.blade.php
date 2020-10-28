@@ -42,9 +42,14 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                <a href="{{route('dashboard.users.create')}}"
-                                                   class="btn btn-success btn-sm"><i
-                                                        class="fa fa-plus"></i> إضافة</a>
+                                                @if(auth()->user()->hasPermission('create_users'))
+                                                    <a href="{{route('dashboard.users.create')}}"
+                                                       class="btn btn-success btn-sm"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @else
+                                                    <a href="#" class="btn btn-success btn-sm disabled"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </form>
@@ -85,30 +90,20 @@
                                                             {{--                                            {{implode(', ', $user->roles->pluck('name')->toArray())}}--}}
                                                         </td>
 
-                                                        <td>{{--
-                                            @if(auth()->user()->hasPermission('update_users'))
-                                                @if($user->hasRole('super_admin'))
-                                                    <a href="#"
-                                                       class="btn btn-warning btn-sm" disabled=""><i
-                                                            class="fa fa-edit"></i> تعديل</a>
-                                                @else--}}
+                                                        <td>
+                                                            @if(auth()->user()->hasPermission('update_users'))
+
                                                             <a href="{{route('dashboard.users.edit',$user->id)}}"
                                                                class="btn btn-warning btn-sm"><i
                                                                     class="fa fa-edit"></i> تعديل</a>
-                                                            {{--@endif
-                                                        @else
-                                                            <a href="#"
-                                                               class="btn btn-warning btn-sm" disabled=""><i
-                                                                    class="fa fa-edit"></i> تعديل</a>
-                                                        @endif--}}
+                                                            @else
+                                                                <a href="#"
+                                                                   class="btn btn-warning btn-sm disabled"><i
+                                                                        class="fa fa-edit"></i> تعديل</a>
+                                                            @endif
+                                                                @if(auth()->user()->hasPermission('delete_users'))
 
-                                                            {{-- @if(auth()->user()->hasPermission('delete_users'))
-                                                                 @if($user->hasRole('super_admin'))
-                                                                     <a href="#" class="btn btn-danger btn-sm " disabled=""><i
-                                                                             class="fa fa-trash"></i> حذف</a>
-                                                                 @else--}}
-
-                                                            <form
+                                                                <form
                                                                 action="{{route('dashboard.users.destroy',$user->id)}}"
                                                                 method="post"
                                                                 style="display: inline-block">
@@ -118,12 +113,11 @@
                                                                         class="btn btn-danger btn-sm delete"><i
                                                                         class="fa fa-trash"></i> حذف
                                                                 </button>
-                                                            </form>{{--
-                                                @endif
-                                            @else
-                                                <a href="#" class="btn btn-danger btn-sm " disabled=""><i
-                                                        class="fa fa-trash"></i> حذف</a>
-                                            @endif--}}
+                                                            </form>
+                                                                @else
+                                                                    <a href="#" class="btn btn-danger btn-sm disabled"><i
+                                                                            class="fa fa-trash"></i> حذف</a>
+                                                                @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach

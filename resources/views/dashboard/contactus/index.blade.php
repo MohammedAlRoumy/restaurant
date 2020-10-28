@@ -68,16 +68,16 @@
                                                     <td>{{$contact_us->email}}</td>
 
                                                     <td>
-{{--                                                        @if(auth()->user()->hasPermission('update_contactus'))--}}
+                                                        @if(auth()->user()->hasPermission('read_contactus'))
                                                             <a href="{{route('dashboard.contactus.show',$contact_us->id)}}"
                                                                class="btn btn-warning btn-sm"><i
                                                                     class="fa fa-eye"></i> عرض</a>
-{{--                                                        @else--}}
-{{--                                                            <a href="#" class="btn btn-warning btn-sm" disabled=""><i--}}
-{{--                                                                    class="fa fa-eye"></i> عرض</a>--}}
-{{--                                                        @endif--}}
+                                                        @else
+                                                            <a href="#" class="btn btn-warning btn-sm disabled"><i
+                                                                    class="fa fa-eye"></i> عرض</a>
+                                                        @endif
 
-{{--                                                        @if(auth()->user()->hasPermission('delete_contactus'))--}}
+                                                        @if(auth()->user()->hasPermission('delete_contactus'))
                                                             <form action="{{route('dashboard.contactus.destroy',$contact_us->id)}}"
                                                                   method="post"
                                                                   style="display: inline-block">
@@ -87,10 +87,10 @@
                                                                         class="fa fa-trash"></i> حذف
                                                                 </button>
                                                             </form>
-{{--                                                        @else--}}
-{{--                                                            <a href="#" class="btn btn-danger btn-sm " disabled=""><i--}}
-{{--                                                                    class="fa fa-trash"></i> حذف</a>--}}
-{{--                                                        @endif--}}
+                                                        @else
+                                                            <a href="#" class="btn btn-danger btn-sm disabled" ><i
+                                                                    class="fa fa-trash"></i> حذف</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

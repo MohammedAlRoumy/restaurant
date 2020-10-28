@@ -12,11 +12,14 @@ use Intervention\Image\Facades\Image;
 
 class OurTeamsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('permission:read_users')->only(['index']);
+        $this->middleware('permission:create_users')->only(['create','store']);
+        $this->middleware('permission:update_users')->only(['edit','update']);
+        $this->middleware('permission:delete_users')->only(['destroy']);
+    }
+
     public function index()
     {
         $ourteams = OurTeam::whenSearch(request()->search)->paginate();

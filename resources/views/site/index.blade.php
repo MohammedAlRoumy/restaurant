@@ -134,21 +134,21 @@
                     <input type="hidden" name="which" value="first_form">
 
                     <div class="form-group col-6">
-                        <input type="date" name="date" class="form-control" id="inputDate" placeholder="Data gg/mm/aaaa">
+                        <input type="date" name="date" class="form-control" id="inputDate" placeholder="Data gg/mm/aaaa" value="{{old('date')}}">
                     </div>
                     <div class="form-group col-6">
-                        <input type="text" name="name" class="form-control" id="inputName" placeholder="الاسم">
+                        <input type="text" name="name" class="form-control" id="inputName" value="{{old('name')}}" placeholder="الاسم">
                     </div>
                     <div class="form-group col-3">
                         <span>الوقت من</span>
-                        <input type="time" name="timefrom" class="form-control" id="inputTime" placeholder="Timetables">
+                        <input type="time" name="timefrom" class="form-control" id="inputTime" value="{{old('timefrom')}}" placeholder="Timetables">
                     </div>
                     <div class="form-group col-3">
                         <span>الوقت الي</span>
-                        <input type="time" name="timeto" class="form-control" id="inputTime" placeholder="Timetables">
+                        <input type="time" name="timeto" class="form-control" id="inputTime" value="{{old('timeto')}}" placeholder="Timetables">
                     </div>
                     <div class="form-group col-6">
-                        <input type="email" name="email" class="form-control" id="inputEmail" placeholder="البريد الالكتروني">
+                        <input type="email" name="email" class="form-control" id="inputEmail" value="{{old('email')}}" placeholder="البريد الالكتروني">
                     </div>
 
                     <div class="form-group col-6">
@@ -220,21 +220,21 @@
                     <input type="hidden" name="which" value="second_form">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="title" id="title" class="form-control" placeholder="العنوان" required="required">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="العنوان" >
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="email" name="email" id="email" class="form-control" placeholder="البريد الالكتروني"
-                                   required="required">
+                                   >
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <textarea name="content" id="message" class="form-control" rows="4" placeholder="الرسالة"
-                              required></textarea>
+                              {{--required--}}></textarea>
                     <p class="help-block text-danger"></p>
                 </div>
                 <div id="success"></div>

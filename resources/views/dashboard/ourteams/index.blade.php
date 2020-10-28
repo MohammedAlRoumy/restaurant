@@ -36,15 +36,21 @@
                                                     <input type="search" name="search" autofocus class="form-control"
                                                            placeholder="بحث" value="{{request()->search}}">
                                                     <span class="input-group-append">
-                                                        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                                                        <button type="submit" class="btn btn-info"><i
+                                                                class="fa fa-search"></i></button>
                                                     </span>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
-                                                <a href="{{route('dashboard.ourteams.create')}}"
-                                                   class="btn btn-success btn-sm"><i
-                                                        class="fa fa-plus"></i> إضافة</a>
+                                                @if(auth()->user()->hasPermission('create_ourteams'))
+                                                    <a href="{{route('dashboard.ourteams.create')}}"
+                                                       class="btn btn-success btn-sm"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @else
+                                                    <a href="#" class="btn btn-success btn-sm disabled"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </form>
@@ -71,25 +77,39 @@
                                             @foreach($ourteams as $index=>$ourteam)
                                                 <tr>
                                                     <td>{{$index+1}}</td>
-                                                    <td><img height="60" src="{{asset('upload/images/'.$ourteam->image)}}" alt=""></td>
+                                                    <td><img height="60"
+                                                             src="{{asset('upload/images/'.$ourteam->image)}}" alt="">
+                                                    </td>
                                                     <td>{{$ourteam->name}}</td>
                                                     <td>{{$ourteam->description}}</td>
                                                     <td>
-                                                        <a href="{{route('dashboard.ourteams.edit',$ourteam->id)}}"
-                                                           class="btn btn-warning btn-sm"><i
-                                                                class="fa fa-edit"></i> تعديل</a>
-
-                                                        <form
-                                                            action="{{route('dashboard.ourteams.destroy',$ourteam->id)}}"
-                                                            method="post"
-                                                            style="display: inline-block">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit" class="btn btn-danger btn-sm delete">
-                                                                <i
+                                                        @if(auth()->user()->hasPermission('update_ourteams'))
+                                                            <a href="{{route('dashboard.ourteams.edit',$ourteam->id)}}"
+                                                               class="btn btn-warning btn-sm"><i
+                                                                    class="fa fa-edit"></i> تعديل</a>
+                                                        @else
+                                                            <a href="#" class="btn btn-warning btn-sm"
+                                                               disabled=""><i
+                                                                    class="fa fa-edit"></i> تعديل</a>
+                                                        @endif
+                                                        @if(auth()->user()->hasPermission('delete_ourteams'))
+                                                            <form
+                                                                action="{{route('dashboard.ourteams.destroy',$ourteam->id)}}"
+                                                                method="post"
+                                                                style="display: inline-block">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button type="submit"
+                                                                        class="btn btn-danger btn-sm delete">
+                                                                    <i
+                                                                        class="fa fa-trash"></i> حذف
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <a href="#" class="btn btn-danger btn-sm" disabled=""><i
                                                                     class="fa fa-trash"></i> حذف
-                                                            </button>
-                                                        </form>
+                                                            </a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

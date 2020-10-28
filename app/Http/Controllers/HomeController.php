@@ -92,14 +92,16 @@ class HomeController extends Controller
     public function contactusAdd($request)
     {
         // ( $request);
-        dump($request);
+       // dump($request);
         //$user= Auth::user();
         $user = User::first();
         DB::beginTransaction();
         try {
             $validator = $this->contactusValidator($request->all());
             if ($validator->fails()) {
-                return redirect()->back()->withInput()->withErrors($validator);
+              //  return redirect()->back()->withInput()->withErrors($validator);
+                Alert::error('errors', $validator->messages()->all());
+                return redirect()->back();
             }
             //   dd($request->all());
             $contactus = ContactUs::create([
@@ -152,54 +154,57 @@ class HomeController extends Controller
     public function reservationAdd($request)
     {
         //dd ($request);
-        //   try {
-        $validator = $this->ReservationValidator($request->all());
-        if ($validator->fails()) {
-            Alert::error('خطأ', 'هناك خطأ في عملية الحجز, خطأ في الفلديشن');
-            return redirect()->back();
-        }
-
-        $existing = Reservation::where('table', '=', $request->table)
-            ->where('date', '=', $request->date)
-            ->where(function ($q) use ($request) {
-                $q->whereBetween('timefrom', [$request->timefrom, $request->timeto])
-                    ->orWhereBetween('timeto', [$request->timefrom, $request->timeto])
-                    ->orWhere(function ($q) use ($request) {
-                        $q->where('timefrom', '<', $request->timefrom)
-                            ->where('timeto', '>', $request->timeto);
-                    });
-            })->get();
-        if ($existing->count() > 0) {
-            Alert::error('خطأ', 'هناك خطأ في عملية الحجز , اختار موعد اخر ');
-            $request->session()->flash('error', "فشل في عملية الحجز ");
-            return redirect()->back();
-
-
-        } else {
-           // dd(setting('fromtime1') );
-           // dd(Carbon::parse( $request->timefrom)->format('H:i'));
-          //  dd(Carbon::parse( $request->timefrom)->format('g:i A'));
-            if ( setting('fromtime1') > Carbon::parse( $request->timefrom)->format('H:i') || setting('totime1') < Carbon::parse($request->timeto)->format('H:i')) {
-                Alert::error('خطأ', 'هناك خطأ في عملية الحجز , المطعم مغلق في هذا الوقت ، ساعات الدوام من السابعة صباحاً إلى الحادية عشر مساءً');
+        try {
+            $validator = $this->ReservationValidator($request->all());
+            if ($validator->fails()) {
+                Alert::error('errors', $validator->messages()->all());
+               // $request->session()->flash('error', "فشل في عملية الحجز ");
                 return redirect()->back();
-            }else{
-                $reservation = Reservation::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'table' => $request->table,
-                    'date' => $request->date,
-                    'timefrom' => $request->timefrom,
-                    'timeto' => $request->timeto,
-                ]);
-                Alert::success('تم بنجاح', 'تمت عملية الحجز بنجاح');
-                return redirect()->back();
+               // return back()->with('errors', $validator->messages()->all()[0])->withInput();
             }
+
+            $existing = Reservation::where('table', '=', $request->table)
+                ->where('date', '=', $request->date)
+                ->where(function ($q) use ($request) {
+                    $q->whereBetween('timefrom', [$request->timefrom, $request->timeto])
+                        ->orWhereBetween('timeto', [$request->timefrom, $request->timeto])
+                        ->orWhere(function ($q) use ($request) {
+                            $q->where('timefrom', '<', $request->timefrom)
+                                ->where('timeto', '>', $request->timeto);
+                        });
+                })->get();
+            if ($existing->count() > 0) {
+                Alert::error('خطأ', 'هناك خطأ في عملية الحجز , اختار موعد اخر ');
+                $request->session()->flash('error', "فشل في عملية الحجز ");
+                return redirect()->back();
+
+
+            } else {
+                // dd(setting('fromtime1') );
+                // dd(Carbon::parse( $request->timefrom)->format('H:i'));
+                //  dd(Carbon::parse( $request->timefrom)->format('g:i A'));
+                if (setting('fromtime1') > Carbon::parse($request->timefrom)->format('H:i') || setting('totime1') < Carbon::parse($request->timeto)->format('H:i')) {
+                    Alert::error('خطأ', 'هناك خطأ في عملية الحجز , المطعم مغلق في هذا الوقت ، ساعات الدوام من السابعة صباحاً إلى الحادية عشر مساءً');
+                    return redirect()->back();
+                } else {
+                    $reservation = Reservation::create([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'phone' => $request->phone,
+                        'table' => $request->table,
+                        'date' => $request->date,
+                        'timefrom' => $request->timefrom,
+                        'timeto' => $request->timeto,
+                    ]);
+                    Alert::success('تم بنجاح', 'تمت عملية الحجز بنجاح');
+                    return redirect()->back();
+                }
+            }
+        } catch (\Exception $exception) {
+            return $exception;
+            return redirect()->back()->with('هذا الحجز موجود مسبقا');
         }
-        /* }    catch (\Exception $exception) {
-             return $exception;
-              return redirect()->back()->with('هذا الحجز موجود مسبقا');
-         }*/
+
     }
 
 

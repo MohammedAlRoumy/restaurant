@@ -36,15 +36,21 @@
                                                     <input type="search" name="search" autofocus class="form-control"
                                                            placeholder="بحث" value="{{request()->search}}">
                                                     <span class="input-group-append">
-                                                        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                                                        <button type="submit" class="btn btn-info"><i
+                                                                class="fa fa-search"></i></button>
                                                     </span>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
-                                                <a href="{{route('dashboard.tables.create')}}"
-                                                   class="btn btn-success btn-sm"><i
-                                                        class="fa fa-plus"></i> إضافة</a>
+                                                @if(auth()->user()->hasPermission('create_tables'))
+                                                    <a href="{{route('dashboard.tables.create')}}"
+                                                       class="btn btn-success btn-sm"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @else
+                                                    <a href="#" class="btn btn-success btn-sm disabled"><i
+                                                            class="fa fa-plus"></i> إضافة</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </form>
@@ -76,21 +82,34 @@
                                                     <td>{{$table->status == 1 ? 'متاح' : 'غير متاح'}}</td>
 
                                                     <td>
-                                                        <a href="{{route('dashboard.tables.edit',$table->id)}}"
-                                                           class="btn btn-warning btn-sm"><i
-                                                                class="fa fa-edit"></i> تعديل</a>
+                                                        @if(auth()->user()->hasPermission('update_tables'))
 
-                                                        <form
-                                                            action="{{route('dashboard.tables.destroy',$table->id)}}"
-                                                            method="post"
-                                                            style="display: inline-block">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit" class="btn btn-danger btn-sm delete">
-                                                                <i
-                                                                    class="fa fa-trash"></i> حذف
-                                                            </button>
-                                                        </form>
+                                                            <a href="{{route('dashboard.tables.edit',$table->id)}}"
+                                                               class="btn btn-warning btn-sm"><i
+                                                                    class="fa fa-edit"></i> تعديل</a>
+
+                                                        @else
+                                                            <a href="#"
+                                                               class="btn btn-warning btn-sm disabled"><i
+                                                                    class="fa fa-edit"></i> تعديل</a>
+                                                        @endif
+                                                        @if(auth()->user()->hasPermission('delete_tables'))
+                                                            <form
+                                                                action="{{route('dashboard.tables.destroy',$table->id)}}"
+                                                                method="post"
+                                                                style="display: inline-block">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button type="submit"
+                                                                        class="btn btn-danger btn-sm delete">
+                                                                    <i
+                                                                        class="fa fa-trash"></i> حذف
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <a href="#" class="btn btn-danger btn-sm disabled"><i
+                                                                    class="fa fa-trash"></i> حذف</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach

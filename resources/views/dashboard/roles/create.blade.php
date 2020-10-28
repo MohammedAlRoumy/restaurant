@@ -60,7 +60,7 @@
                         <tbody>
 
                         @php
-                            $models = ['categories','users','ourteams'];
+                            $models = ['categories','users','ourteams','meals','reservations','contactus','aboutus'];
                         @endphp
 
                         @foreach ($models as $index=>$model)
@@ -71,6 +71,22 @@
                                     @php
                                         $permission_maps = ['create', 'read', 'update', 'delete'];
                                     @endphp
+
+                                    @if ($model == 'contactus')
+                                        @php
+                                            $permission_maps = ['read','delete'];
+                                        @endphp
+                                    @endif
+                                    @if ($model == 'reservations')
+                                        @php
+                                            $permission_maps = ['read','delete'];
+                                        @endphp
+                                    @endif
+                                    @if ($model == 'aboutus')
+                                        @php
+                                            $permission_maps = ['create', 'read'];
+                                        @endphp
+                                    @endif
 
                                     <select name="permissions[]" class="form-control select2" multiple>
                                         @foreach ($permission_maps as $permission_map)
